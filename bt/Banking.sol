@@ -1,6 +1,11 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.2 <0.9.0;
-
+ /**
+   * @title ContractName
+   * @dev ContractDescription
+   * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+   */
 contract SimpleBank {
     uint8 private clientCount;
     mapping (address => uint) private balances;
@@ -11,7 +16,7 @@ contract SimpleBank {
 
     // Constructor is "payable" so it can receive the initial funding of 30,
     // required to reward the first 3 clients
-    constructor() public payable {
+    constructor() payable {
         require(msg.value == 30 ether, "30 ether initial funding required");
         /* Set the owner to the creator of this contract */
         owner = msg.sender;
@@ -58,4 +63,5 @@ contract SimpleBank {
     function depositsBalance() public view returns (uint) {
         return address(this).balance;
     }
+    
 }
